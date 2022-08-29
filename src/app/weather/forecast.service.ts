@@ -1,6 +1,13 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
-import { filter, map, mergeMap, switchMap, toArray } from 'rxjs/operators';
+import {
+  filter,
+  map,
+  mergeMap,
+  share,
+  switchMap,
+  toArray,
+} from 'rxjs/operators';
 
 import { HttpClient, HttpParams } from '@angular/common/http';
 
@@ -53,7 +60,8 @@ export class ForecastService {
           temp: value.main.temp,
         };
       }),
-      toArray()
+      toArray(),
+      share()
     );
   }
 }
